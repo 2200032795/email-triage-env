@@ -1,0 +1,44 @@
+name: email-triage-env
+version: 1.0.0
+description: An AI environment where an agent learns to triage emails by deciding to reply, delete, or escalate them.
+author: LaxmiVarshini
+tags:
+  - openenv
+  - email
+  - triage
+  - real-world
+
+tasks:
+  - id: task_1
+    name: Spam Detection
+    difficulty: easy
+    description: Delete an obvious spam email
+
+  - id: task_2
+    name: Meeting Request
+    difficulty: medium
+    description: Reply to a meeting request from a colleague
+
+  - id: task_3
+    name: Server Emergency
+    difficulty: hard
+    description: Escalate an urgent production server issue
+
+action_space:
+  type: discrete
+  actions:
+    - reply
+    - delete
+    - escalate
+
+observation_space:
+  - email_id
+  - subject
+  - body
+  - sender
+  - step
+  - max_steps
+
+reward_range:
+  min: 0.0
+  max: 1.0
