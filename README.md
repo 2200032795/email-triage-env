@@ -1,11 +1,11 @@
 ---
 title: Email Triage Env
-emoji: 🐨
+emoji: 📧
 colorFrom: indigo
 colorTo: red
 sdk: docker
 pinned: false
 license: mit
+tags:
+  - openenv
 ---
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
