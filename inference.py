@@ -1,13 +1,11 @@
 import os
-import requests
 from openai import OpenAI
 from tasks import TASKS
 from graders import grade
 
 API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
-API_KEY = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
+API_KEY = os.getenv("HF_TOKEN") or os.getenv("OPENAI_API_KEY")
 MODEL_NAME = os.getenv("MODEL_NAME", "meta-llama/Llama-3.1-8B-Instruct")
-ENV_URL = os.getenv("ENV_URL", "http://localhost:7860")
 
 client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
 
@@ -38,7 +36,6 @@ def run_inference():
     print("=" * 40)
 
     total_score = 0.0
-    results = []
 
     for task in TASKS:
         email = task["email"]
@@ -49,14 +46,6 @@ def run_inference():
         )
         score = grade(task, action)
         total_score += score
-
-        results.append({
-            "task_id": task["task_id"],
-            "difficulty": task["difficulty"],
-            "correct": task["correct_action"],
-            "predicted": action,
-            "score": score
-        })
 
         print(f"Task {task['task_id']} ({task['difficulty']})")
         print(f"  Correct: {task['correct_action']}")

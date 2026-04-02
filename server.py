@@ -28,3 +28,8 @@ def step(request: ActionRequest):
 @app.get("/state")
 def state():
     return env.state()
+
+@app.get("/tasks")
+def get_tasks():
+    from tasks import TASKS
+    return {"tasks": TASKS}
