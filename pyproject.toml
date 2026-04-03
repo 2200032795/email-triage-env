@@ -15,6 +15,10 @@ dependencies = [
     "openenv-core",
 ]
 
+[project.scripts]
+serve = "server:app"
+
 [tool.openenv]
 name = "email-triage-env"
 version = "1.0.0"
+entry_point = "server:app"
